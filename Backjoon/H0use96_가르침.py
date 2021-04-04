@@ -7,6 +7,7 @@ if __name__ == "__main__":
     letters = [False] * 26
     letter_count -= 5
     maxResult = 0
+    filtered_result = 0
 
     if letter_count == 21:
         print(word_count)
@@ -28,13 +29,17 @@ if __name__ == "__main__":
                 result.append(c)
 
         if len(result) == 0:
-            maxResult += 1
+            filtered_result += 1
         else:
             words.append(result)
     filter_letters = []
     for i in range(26):
         if letters[i]:
             filter_letters.append(chr(i+ord('a')))
+
+    if letter_count <= 0:
+        print(filtered_result)
+        exit()
 
     combinations = list(itertools.combinations(filter_letters, letter_count))
 
@@ -48,7 +53,6 @@ if __name__ == "__main__":
                     break
             if flag:
                 count += 1
-        print(candidate, count)
         maxResult = max(maxResult, count)
 
-    print(maxResult)
+    print(maxResult+filtered_result)
