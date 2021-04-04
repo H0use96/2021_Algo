@@ -9,13 +9,16 @@ if __name__ == "__main__":
     maxResult = 0
     filtered_result = 0
 
-    if letter_count == 21:
-        print(word_count)
-        exit()
-
     origin_words = []
     for _ in range(word_count):
         origin_words.append(input())
+
+    if letter_count >= 21:
+        print(word_count)
+        exit()
+    if letter_count <= 0:
+        print(0)
+        exit()
 
     # 데이터 전처리
     for origin in origin_words:
@@ -37,9 +40,7 @@ if __name__ == "__main__":
         if letters[i]:
             filter_letters.append(chr(i+ord('a')))
 
-    if letter_count <= 0:
-        print(filtered_result)
-        exit()
+
 
     combinations = list(itertools.combinations(filter_letters, letter_count))
 
